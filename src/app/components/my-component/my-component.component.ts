@@ -16,6 +16,7 @@ export class MyComponentComponent implements OnInit {
 
   // tslint:disable-next-line:no-inferrable-types
   public nbPlaces: number = 1;
+
   // tslint:disable-next-line:no-inferrable-types
   public isMini: boolean = true;
 

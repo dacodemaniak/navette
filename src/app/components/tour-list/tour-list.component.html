@@ -1,4 +1,21 @@
 <mat-progress-spinner *ngIf="progress"></mat-progress-spinner>
+<mat-card>
+    <mat-card-header>
+      Tournée du : {{ currentDisplayTour | momentPipe: 'DD-MM-YYYY'}}
+    </mat-card-header>
+    <mat-card-content>
+      Sélectionnez le nombre de places à l'heure souhaitée et règlez en ligne
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-fab [disabled]="isFirstDay" (click)="previousTour()">
+        <mat-icon>skip_previous</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <button mat-fab [disabled]="isLastDay" (click)="nextTour()">
+          <mat-icon>skip_next</mat-icon>
+      </button>
+    </mat-card-actions>
+  </mat-card>
 
 <div class="card"
   *ngFor="let tour of tournees"

@@ -1,8 +1,11 @@
+import { environment } from './../../../environments/environment';
 import { TourneeInterface } from './../interfaces/tournee';
 import { Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { ResaService } from './resa.service';
 import { ResaModel } from '../models/resa-model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +13,20 @@ import { ResaModel } from '../models/resa-model';
 export class TourneesService {
   private resaService: ResaService = new ResaService();
 
-  constructor() {
-   }
+  constructor(
+    private httpClient: HttpClient
+  ) {}
+
+  public getRemoteTournees(tourDate: moment.Moment = null): Observable<any[]> {
+    let uri: string = environment.apiRoot + 'tournees';
+
+    if (tourDate) {
+      uri += '/' + tourDate.format('YYYY-MM-DD');
+    }
+    return this.httpClient.get<any[]>(
+      uri
+    );
+  }
 
   public getTournees(): Promise<Array<TourneeInterface>> {
     return new Promise((resolve) => {

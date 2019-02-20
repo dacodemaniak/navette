@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MyResaComponent } from './components/my-resa/my-resa.component';
 import { PaymentDialogComponent } from './components/payment-dialog/payment-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ),
     ReactiveFormsModule,
     IhmModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [
       {
