@@ -97,12 +97,11 @@ export class TourListComponent implements OnInit, OnDestroy {
           .setDateResa(moment())
           .setPlaces(result.resa)
           .setTourDate(result.hour);
-        const daoResa: DaoResa = new DaoResa(resa);
+        const daoResa: DaoResa = new DaoResa(resa, this.tourneeService);
         daoResa.add();
 
         this.tournees[this.tournees.indexOf(result)].dispo = this.tournees[this.tournees.indexOf(result)].dispo - tour.resa;
         this.tournees[this.tournees.indexOf(result)].resa = 1;
-
 
         // Affiche le toast... Material Mode
         this.snackBar.open('Votre réservation a bien été prise en compte.', 'Got it!');

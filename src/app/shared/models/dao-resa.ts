@@ -1,14 +1,17 @@
+import { ResaService } from './../services/resa.service';
 import { DaoInterface } from './../interfaces/dao/dao-interface';
 import { ResaModel } from './resa-model';
-import { ResaService } from '../services/resa.service';
+import { TourneesService } from '../services/tournees.service';
 
 export class DaoResa implements DaoInterface<ResaModel> {
   private resas: Array<ResaModel> = new Array<ResaModel>();
   private resaService: ResaService = new ResaService();
   private resa: ResaModel;
+  private tourneeService: TourneesService;
 
-  public constructor(resaModel: ResaModel) {
+  public constructor(resaModel: ResaModel, tourneeService: TourneesService) {
     this.resa = resaModel;
+    this.tourneeService = tourneeService;
   }
 
   public find(id: number): ResaModel {
@@ -33,6 +36,23 @@ export class DaoResa implements DaoInterface<ResaModel> {
 
       this.resaService.persist(resas);
     });
+
+    // Créer l'objet attendu par l'api
+    const data: any = {
+      nbPlaces: this.resa.getPlaces(),
+      owner: 'jla.webprojet@gmail.com', // Bull shit... change for localStorage
+      transaction: '0000001', // Bull shit two... get real transaction number
+      tournee: {
+        date: this.resa.getTourDate().format('YYYY-MM-DD'),
+        time: this.resa.getTourDate().format('HH:mm')
+      }
+    };
+
+    // Appeler la méthode du service
+    this.tourneeService.addReservation(data).subscribe((result) => {
+      // NOOP
+    }).unsubscribe();
+
     return this.resa;
   }
 

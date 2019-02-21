@@ -30,6 +30,14 @@ export class TourneesService {
     );
   }
 
+  public addReservation(reservation: any): Observable<any>{
+    const uri: string = environment.apiRoot + 'resa';
+
+    return this.httpClient.post<any>(
+      uri,
+      reservation
+    );
+  }
 
   public getTournees(): Promise<Array<TourneeInterface>> {
     return new Promise((resolve) => {
