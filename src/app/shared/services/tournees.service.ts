@@ -18,6 +18,8 @@ export class TourneesService {
   ) {}
 
   public getRemoteTournees(tourDate: moment.Moment = null): Observable<any[]> {
+    // route à appeler sur le serveur
+    // i.e : http://localhost:8080/tournees
     let uri: string = environment.apiRoot + 'tournees';
 
     if (tourDate) {
@@ -27,6 +29,7 @@ export class TourneesService {
       uri
     );
   }
+
 
   public getTournees(): Promise<Array<TourneeInterface>> {
     return new Promise((resolve) => {
