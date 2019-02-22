@@ -49,9 +49,10 @@ export class DaoResa implements DaoInterface<ResaModel> {
     };
 
     // Appeler la méthode du service
-    this.tourneeService.addReservation(data).subscribe((result) => {
-      // NOOP
-    }).unsubscribe();
+    const observer = this.tourneeService.addReservation(data).subscribe((result) => {
+      // NOOP : juste nécessaire pour acheminer la requête
+    });
+    observer.unsubscribe();
 
     return this.resa;
   }

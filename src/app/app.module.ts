@@ -1,3 +1,4 @@
+import { AuthInterceptorService } from './shared/services/auth-interceptor.service';
 
 
 import { ResaService } from './shared/services/resa.service';
@@ -17,7 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MyResaComponent } from './components/my-resa/my-resa.component';
 import { PaymentDialogComponent } from './components/payment-dialog/payment-dialog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,9 @@ import { HttpClientModule } from '@angular/common/http';
       {
         provide: LOCALE_ID,
         useValue: 'fr'
+      },
+      {
+        provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true
       }
   ],
   entryComponents: [
