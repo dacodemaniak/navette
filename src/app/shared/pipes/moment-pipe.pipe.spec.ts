@@ -1,8 +1,8 @@
-import { MomentPipePipe } from './moment-pipe.pipe';
+import { MomentPipe } from './moment-pipe.pipe';
 
-describe('MomentPipePipe', () => {
+describe('MomentPipe', () => {
   it('create an instance', () => {
-    const pipe = new MomentPipePipe();
+    const pipe = new MomentPipe();
     expect(pipe).toBeTruthy();
   });
 });
