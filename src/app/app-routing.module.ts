@@ -14,7 +14,8 @@ const routes: Routes = [
     component: MyResaComponent,
     data: { title: 'Mes réservations' }
   },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/tours',
     pathMatch: 'full'
   },
